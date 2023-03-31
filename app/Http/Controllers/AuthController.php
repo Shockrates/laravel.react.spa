@@ -54,4 +54,22 @@ class AuthController extends Controller
 
     }
 
+    // logout a user method
+    public function logout(Request $request){
+
+        $request->user()->currentAccessToken()->delete();
+
+        $cookie = cookie()->forget('token');
+
+        return response()->json([
+            'message' => 'Logged out successfully!'
+        ])->withCookie($cookie);
+
+    } 
+
+    // get the authenticated user method
+    public function user(Request $request){
+        return new UserResource($request->user());
+    }
+
 }
