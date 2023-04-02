@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Traits\HttpResponses;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    use HttpResponses;
+
     // register a new user method
     public function register(RegisterRequest $request){
 
@@ -26,8 +30,10 @@ class AuthController extends Controller
 
         $cookie = cookie('token', $token, 60 * 24);
 
-        return response()->json([
-            'user' => new UserResource($user)
+        return $this->success([
+            'user' => new UserResource($user),
+            'token' => $token
+            
         ])->withCookie($cookie);
     }
 
@@ -48,20 +54,23 @@ class AuthController extends Controller
 
         $cookie = cookie('token', $token, 60 * 24);
 
-        return response()->json([
-            'user' => new UserResource($user)
+
+        return $this->success([
+            //'user' => $user,
+            'user' => new UserResource($user),
+            'token' => $token
         ])->withCookie($cookie);
 
     }
 
     // logout a user method
-    public function logout(Request $request){
+    public function logout(){
 
-        $request->user()->currentAccessToken()->delete();
+       Auth::user()->currentAccessToken()->delete();
 
         $cookie = cookie()->forget('token');
 
-        return response()->json([
+        return $this->success([
             'message' => 'Logged out successfully!'
         ])->withCookie($cookie);
 
@@ -69,7 +78,11 @@ class AuthController extends Controller
 
     // get the authenticated user method
     public function user(Request $request){
-        return new UserResource($request->user());
+
+        return $this->success([
+            'user' => new UserResource($request->user())
+        ]);
+       
     }
 
 }
