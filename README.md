@@ -67,3 +67,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 Tutorial at: https://dcodemania.com/post/full-stack-laravel-10-react-js-spa-authentication-part-1
 and at https://www.youtube.com/watch?v=TzAJfjCn7Ks
+
+Changes for new branch
