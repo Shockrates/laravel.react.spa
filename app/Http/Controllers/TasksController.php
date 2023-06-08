@@ -19,8 +19,8 @@ class TasksController extends Controller
     public function index()
     {
         return TaskResource::collection(
-            Task::where('user_id', Auth::user()->id)->get()
-            //Task::all()
+            //Task::where('user_id', Auth::user()->id)->get()
+            Task::all()
         );
     }
 

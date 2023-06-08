@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import About from "./pages/About"
 import Profile from "./pages/Profile"
+import Tasks from "./pages/Tasks"
 
 
 
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
-            }   
+            },
+            {
+                path: '/tasks',
+                element: <Tasks />
+            }      
         ]
     },
     {
