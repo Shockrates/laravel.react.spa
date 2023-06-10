@@ -14,9 +14,10 @@ export default function GuestLayout() {
 
   return (
     <>
-    
-      <Outlet />
-      
+      <div className="bg-auth bg-cover bg-center h-screen">
+        <Outlet />
+      </div>
+ 
     </>
   )
 }

@@ -18,6 +18,9 @@ module.exports = {
       }
     },
     extend: {
+      backgroundImage:{
+        'auth':"url('/resources/js/assets/images/michelangelo-hotels-2.jpg')",
+      },
       colors: {
         primary:{ 
           "50": "#eff6ff", 

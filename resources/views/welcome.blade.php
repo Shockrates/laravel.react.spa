@@ -7,7 +7,7 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="container" id="root">
+    <div id="root">
     </div>
     @viteReactRefresh
     @vite(['resources/js/main.jsx'])
