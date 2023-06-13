@@ -15,7 +15,7 @@ export default function ProtectedLayout() {
   useEffect(() => {
     (async () => {
       try {
-        const resp = await axios.get('/user');
+        const resp = await axios.get('/api/user');
         if (resp.status === 200) {
           setUser(resp.data.data.user);
         } 

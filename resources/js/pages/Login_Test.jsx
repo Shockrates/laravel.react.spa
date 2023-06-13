@@ -3,6 +3,7 @@ import axios from '../axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext'
 import reactLogo from '../assets/react.svg';
+import cookie from 'js-cookie';
  
 const Login_Test = (props) => {
     const [email, setEmail] = useState('');
@@ -12,12 +13,14 @@ const Login_Test = (props) => {
         e.preventDefault();
         axios.get('/sanctum/csrf-cookie')
         .then(response => {
-            axios.post('/login', {
+            axios.post('/api/login', {
                 email: email,
                 password: password
             }).then(response => {
-                console.log(response)
+                
                 if (response.status === 200) {
+                    console.log(response.data.data.user);
+                    
                     setUser(response.data.data.user);
                     //navigate("/profile");
                 }
