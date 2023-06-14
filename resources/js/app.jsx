@@ -29,9 +29,12 @@ function App() {
     // const csrf = await axios.get('/sanctum/csrf-cookie');
     // console.log('csrf = ', csrf);
     
-
-    // axios.get("/api/user")
-    //     .then(response => console.log(response));
+   
+    // axios.post("/api/login", {
+    //   email:"tester@test.com",
+    //   password:"@@Test1234"
+    // })
+    //     .then(response => console.log(response.data.data.user));
 
   }
   
