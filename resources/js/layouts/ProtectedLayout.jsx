@@ -9,24 +9,29 @@ export default function ProtectedLayout() {
 
   const { user, setUser } = useAuth();
 
- 
+  const myFunction = async () => {
+     (async () => {
+   
+        await axios.get('/api/user')
+          .then(resp =>{
+            if (resp.status === 200) {
+              setUser(resp.data.data.user);
+            } 
+          })
+      . catch (error => {
+          if (error.response.status === 401) {
+            localStorage.removeItem('user');
+            //window.location.href = '/';
+          }
+        })    
+      }
+    );
+  };
+
 
   // check if user is logged in or not from server
   useEffect(() => {
-    (async () => {
-      try {
-        const resp = await axios.get('/api/user');
-        if (resp.status === 200) {
-          setUser(resp.data.data.user);
-        } 
-      } catch (error) {
-        console.log(error);
-        // if (error.response.status === 401) {
-				//   localStorage.removeItem('user');
-				//   window.location.href = '/';
-				// }
-      }
-    })()
+   myFunction();
   }, []);
 
   // if user is not logged in, redirect to login page
@@ -93,17 +98,27 @@ export default function ProtectedLayout() {
             </NavLink>
           </li>
           <li>
-								<NavLink
-									to="/about"
-									className={({ isActive }) =>
-										isActive
-											? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
-											: 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
-									}>
-									About
-								</NavLink>
-							</li>
-
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  isActive
+                    ? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
+                    : 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
+                }>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/tasks"
+                className={({ isActive }) =>
+                  isActive
+                    ? 'block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white'
+                    : 'block py-2 pl-3 pr-4 rounded md:bg-transparent md:p-0 dark:text-gray-400 md:dark:hover:text-white'
+                }>
+                Tasks
+              </NavLink>
+            </li>
 							<li>
 								<a
 									onClick={handleLogout}

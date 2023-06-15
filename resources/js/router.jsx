@@ -26,10 +26,7 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Register />
             },
-            {
-                path: '/tasks',
-                element: <Tasks />
-            }      
+              
         ]
     },
     {
@@ -40,6 +37,10 @@ const router = createBrowserRouter([
 				path: '/about',
 				element: <About />,
 			},
+            {
+                path: '/tasks',
+                element: <Tasks />
+            },    
 			{
 				path: '/profile',
 				element: <Profile />,

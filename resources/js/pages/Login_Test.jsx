@@ -3,7 +3,7 @@ import axios from '../axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext'
 import reactLogo from '../assets/react.svg';
-import cookie from 'js-cookie';
+
  
 const Login_Test = (props) => {
     const [email, setEmail] = useState('');
